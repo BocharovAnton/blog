@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BlogController {
     @GetMapping("/blog")
     public String blog(Model model){
+        model.addAttribute("title", "Блог");
         return "blog";
     }
 }
