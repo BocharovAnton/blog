@@ -8,6 +8,14 @@ import javax.persistence.Id;
 
 @Entity
 public class Post {
+    public Post(String title, String announcement, String fullText) {
+        this.title = title;
+        this.announcement = announcement;
+        this.fullText = fullText;
+    }
+
+    public Post() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
