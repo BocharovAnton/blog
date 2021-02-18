@@ -34,6 +34,9 @@ public class BlogController {
 
     @GetMapping("/blog/{id}")
     public String blogDetails(@PathVariable(value = "id") long id, Model model){
+        if (!postRepository.existsById(id)) {
+            return "redirect:/blog";
+        }
         Optional<Post> post = postRepository.findById(id);
         ArrayList<Post> res= new ArrayList<>();
         post.ifPresent(res::add);
@@ -41,10 +44,36 @@ public class BlogController {
         return "blogDetails";
     }
 
+    @GetMapping("/blog/{id}/edit")
+    public String blogEdit(@PathVariable(value = "id") long id, Model model){
+        if (!postRepository.existsById(id)) {
+            return "redirect:/blog";
+        }
+        Optional<Post> post = postRepository.findById(id);
+        ArrayList<Post> res= new ArrayList<>();
+        post.ifPresent(res::add);
+        model.addAttribute("post", res);
+        return "blogEdit";
+    }
     @PostMapping("/blog/add")
-    public String blogPostAdd(@RequestParam String title, @RequestParam String announcement, @RequestParam String full_text, Model model){
-        Post post = new Post(title,  announcement, full_text);
+    public String blogPostAdd(@RequestParam String title, @RequestParam String announcement, @RequestParam String fullText, Model model){
+        Post post = new Post(title,  announcement, fullText);
         postRepository.save(post);
+        return "redirect:/blog";
+    }
+    @PostMapping("/blog/{id}/edit")
+    public String blogUpdate(@PathVariable(value = "id") long id, @RequestParam String title, @RequestParam String announcement, @RequestParam String fullText, Model model){
+        Post post = postRepository.findById(id).orElseThrow();
+        post.setTitle(title);
+        post.setAnnouncement(announcement);
+        post.setFullText(fullText);
+        postRepository.save(post);
+        return "redirect:/blog";
+    }
+    @PostMapping("/blog/{id}/remove")
+    public String blogDelete(@PathVariable(value="id") long id, Model model){
+        Post post = postRepository.findById(id).orElseThrow();
+        postRepository.delete(post);
         return "redirect:/blog";
     }
 }
