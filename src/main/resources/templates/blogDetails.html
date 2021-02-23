@@ -9,10 +9,10 @@
 <header th:insert="blocks/header :: header">
 </header>
 <div class="container mt-5">
-    <h1>Статья</h1>
+    <h1 class="mb-5">Статья</h1>
     <div th:each="el : ${post}" class="alert alert-info mt-2">
-        <h1 th:text="${el.title}"></h1>
-        <p th:text="${el.fullText}"></p>
+        <h4 th:text="${el.title}"></h4>
+        <p th:text="${el.fullText}" class="mt-5"></p>
         <p><b>Просмотры:</b> <span th:text="${el.views}"/></p>
         <a th:href="'/blog/'+${el.id} + '/edit'" class="btn btn-warning">Редактировать</a>
         <br><br>
