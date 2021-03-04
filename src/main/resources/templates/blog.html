@@ -4,6 +4,7 @@
     <title th:text="${title}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header th:insert="blocks/header :: header">
@@ -16,6 +17,6 @@
         <a th:href="'/blog/'+${el.id}" class="btn btn-success mt-3 d-inline-flex justify-content-end" >Читать статью</a>
     </div>
 </div>
-<footer th:insert="blocks/footer::footer"></footer>
+<div th:insert="blocks/footer::footer"></div>
 </body>
 </html>
