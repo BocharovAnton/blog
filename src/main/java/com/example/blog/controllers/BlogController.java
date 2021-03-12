@@ -56,8 +56,8 @@ public class BlogController {
         return "blogEdit";
     }
     @PostMapping("/blog/add")
-    public String blogPostAdd(@RequestParam String title, @RequestParam String announcement, @RequestParam String fullText, Model model){
-        Post post = new Post(title,  announcement, fullText);
+    public String blogPostAdd(@RequestParam String title, @RequestParam String announcement, @RequestParam String fullText,@RequestParam String img_link, Model model){
+        Post post = new Post(title,  announcement, fullText, img_link);
         postRepository.save(post);
         return "redirect:/blog";
     }

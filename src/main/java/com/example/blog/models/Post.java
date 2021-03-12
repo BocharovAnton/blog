@@ -8,10 +8,11 @@ import javax.persistence.Id;
 
 @Entity
 public class Post {
-    public Post(String title, String announcement, String fullText) {
+    public Post(String title, String announcement, String fullText, String img_link) {
         this.title = title;
         this.announcement = announcement;
         this.fullText = fullText;
+        this.img_link = img_link;
     }
 
     public Post() {
@@ -21,8 +22,12 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String title, announcement, fullText;
+    private String title, announcement, fullText, img_link;
     private int views;
+
+    public String getImg_link() { return img_link; }
+
+    public void setImg_link(String img_link) { this.img_link = img_link; }
 
     public Long getId() {
         return id;
