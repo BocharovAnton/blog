@@ -15,11 +15,14 @@
         <h4 th:text="${el.title}"></h4>
         <p th:text="${el.fullText}" class="mt-5"></p>
         <p><b>Просмотры:</b> <span th:text="${el.views}"/></p>
-        <a th:href="'/blog/'+${el.id} + '/edit'" class="btn btn-warning">Редактировать</a>
-        <br><br>
-        <form th:action="'/blog/'+ ${el.id} +'/remove'" method="post">
-            <button class="btn btn-warning" type="submit">Удалить</button>
-        </form>
+        <p>
+            <form th:action="'/blog/'+ ${el.id} +'/remove'" method="post">
+            <a th:href="'/blog/'+${el.id} + '/edit'" class="btn btn-secondary">Редактировать</a>
+
+            <button class="btn btn-danger" type="submit">Удалить</button>
+            </form>
+        </p>
+
     </div>
 </div>
 <div th:insert="blocks/footer::footer"></div>
